@@ -31,10 +31,14 @@ class SurveyController extends Controller
                 'answer_1' => 'required',
                 'answer_2' => 'required',
                 'answer_3' => 'required'
+            ], [
+                'answer_1.required' => 'Please provide an answer for question 1',
+                'answer_2.required' => 'Please provide an answer for question 2',
+                'answer_3.required' => 'Please provide an answer for question 3'
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()->all()]);
+                return response()->json(['errors' => $validator->errors()]);
             } else {
                 $answers = [
                     '1' => request()->post('answer_1'),
@@ -50,10 +54,12 @@ class SurveyController extends Controller
             $validator = \Validator::make(request()->all(), [
                 'answer_4' => 'required',
                 'answer_5' => 'nullable'
+            ], [
+                'answer_4.required' => 'Please provide an answer for question 4'
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()->all()]);
+                return response()->json(['errors' => $validator->errors()]);
             } else {
                 request()->session()->put('answers.4', request()->post('answer_4'));
                 request()->session()->put('answers.5', request()->post('answer_5'));

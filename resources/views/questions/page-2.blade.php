@@ -13,6 +13,8 @@
                 <div class="col-sm-10">
                     <p>{!!$question->question!!}</p>
 
+                    <span class="invalid-feedback answer_{{$question->id}} d-block" role="alert"></span>
+
                     @foreach ($question->questionchoices as $choice)
                     <div class="form-check">
                         @if ($choice->question_id === 5)
@@ -85,9 +87,26 @@
                     answer_5: answer_5,
                 },
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     if (data.success) {
                         window.location.href = '/free-gift';
+                    }
+
+                    if (data.errors) {
+                        // console.log(data.errors);
+                        $('span.invalid-feedback').hide();
+                        $('span.invalid-feedback').empty();
+
+                        for (const key in data.errors) {
+                            if (data.errors.hasOwnProperty(key)) {
+                                const element = data.errors[key];
+                                if ($('span.invalid-feedback').hasClass(key)) {
+                                    // console.log(key);
+                                    $('span.invalid-feedback.' + key).show();
+                                    $('span.invalid-feedback.' + key).html('<strong>'+element[0]+'</strong>');
+                                }
+                            }
+                        }
                     }
                 },
                 error: function(error){

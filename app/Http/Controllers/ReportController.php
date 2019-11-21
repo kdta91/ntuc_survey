@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Respondent;
 use App\RespondentQuestionAnswer;
 
 class ReportController extends Controller
@@ -13,10 +14,11 @@ class ReportController extends Controller
 
         // return view('report', compact('survey_results'));
 
-        $this->exportReport();
+        $this->exportRespondents();
+        $this->exportAnswers();
     }
 
-    public function exportReport()
+    public function exportAnswers()
     {
         $survey_results = RespondentQuestionAnswer::with('respondent')->with('question')->with('questionChoice')->get();
         $csvExporter = new \Laracsv\Export();
@@ -32,6 +34,18 @@ class ReportController extends Controller
                 'question_choice_id' => 'Choice',
                 'others'  => 'Others'
             ])->download('Survey_Report_' . date('m-d-Y h:i:s') . '.csv');
+    }
+
+    public function exportRespondents()
+    {
+        $respondents = Respondent::get();
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build($respondents, [
+                'first_name' => 'First Name',
+                'last_name' => 'Last Name',
+                'email' => 'Email',
+                'contact_number'  => 'Contact Number'
+            ])->download('Respondents_' . date('m-d-Y h:i:s') . '.csv');
     }
 
     public function answerPercentage()

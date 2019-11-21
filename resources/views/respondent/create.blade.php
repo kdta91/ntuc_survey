@@ -13,9 +13,9 @@
                     name="first_name" value="{{ old('first_name') }}" autocomplete="first_name" autofocus>
 
                 @error('first_name')
-                <!-- <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span> -->
+                </span>
                 @enderror
             </div>
 
@@ -26,9 +26,9 @@
                     name="last_name" value="{{ old('last_name') }}" autocomplete="last_name" autofocus>
 
                 @error('last_name')
-                <!-- <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span> -->
+                </span>
                 @enderror
             </div>
 
@@ -39,9 +39,9 @@
                     name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
 
                 @error('email')
-                <!-- <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span> -->
+                </span>
                 @enderror
             </div>
 
@@ -52,9 +52,9 @@
                     name="contact_number" value="{{ old('contact_number') }}" autocomplete="contact_number" autofocus>
 
                 @error('contact_number')
-                <!-- <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span> -->
+                </span>
                 @enderror
             </div>
 

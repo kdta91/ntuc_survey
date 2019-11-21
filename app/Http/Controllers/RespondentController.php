@@ -17,8 +17,8 @@ class RespondentController extends Controller
         $data = request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
-            'contact_number' => 'required',
+            'email' => 'required|email|unique:respondents',
+            'contact_number' => 'required|unique:respondents',
         ]);
 
         request()->session()->put('respondent', [

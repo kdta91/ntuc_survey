@@ -14,8 +14,9 @@ class WinnerController extends Controller
         $respondent = request()->session()->get('respondent');
         $respondent = Respondent::where('id', $respondent['id'])->first();
         $has_prize = Winner::where('respondent_id', $respondent['id'])->exists();
+        $prizes = Prize::where('qty', '>', 0)->count();
 
-        return view('free-gift.index', compact('has_prize'));
+        return view('free-gift.index', compact('has_prize', 'prizes'));
     }
 
     public function drawPrize()

@@ -13,6 +13,8 @@
                 <div class="col-sm-11">
                     <p>{!!$question->question!!}</p>
 
+                    <span class="invalid-feedback answer_{{$question->id}} d-block" role="alert"></span>
+
                     @foreach ($question->questionchoices as $choice)
                     <div class="form-check" style="display: {{ ($choice->question_id == 1) ? 'inline-block' : '' }}">
                         <input class="form-check-input {{$choice->type}} @error('answer_{{$choice->question_id}}') is-invalid @enderror" type="{{ ($choice->question_id == 3) ? 'checkbox' : 'radio' }}" name="{{ ($choice->question_id === 3) ? 'answer_'.$choice->question_id.'[]' : 'answer_'.$choice->question_id }}" id="{{$choice->id}}" data-question-id="{{$choice->question_id}}" value="{{ ($choice->type === 'custom') ? 'custom' : $choice->id }}" {{ (old('answer_'.$choice->question_id) == $choice->id) ? 'checked' : '' }}>
@@ -25,7 +27,7 @@
                         </div>
                         @endif
 
-                         @error('answer_{{$choice->question_id}}')
+                        @error('answer_{{$choice->question_id}}')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -89,6 +91,23 @@
                     // console.log(data);
                     if (data.success) {
                         window.location.href = '/survey/2';
+                    }
+
+                    if (data.errors) {
+                        // console.log(data.errors);
+                        $('span.invalid-feedback').hide();
+                        $('span.invalid-feedback').empty();
+
+                        for (const key in data.errors) {
+                            if (data.errors.hasOwnProperty(key)) {
+                                const element = data.errors[key];
+                                if ($('span.invalid-feedback').hasClass(key)) {
+                                    // console.log(key);
+                                    $('span.invalid-feedback.' + key).show();
+                                    $('span.invalid-feedback.' + key).html('<strong>'+element[0]+'</strong>');
+                                }
+                            }
+                        }
                     }
                 },
                 error: function(error){

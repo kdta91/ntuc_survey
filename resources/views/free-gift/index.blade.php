@@ -3,21 +3,31 @@
 @section('content')
 <div class="col-md-12 text-center">
     <div class="thank-you-container">
+        @if (!$has_prize && $prizes > 0)
         <h1 class="mb-5">Thank you for your participation and spin the wheel for a free gift!</h1>
 
         <button id="spinner-button" class="mb-5" {{ ($has_prize) ? 'disabled' : '' }}></button>
+        @else
+        <h1 class="mb-5">Thank you for your participation!</h1>
+
+        <a href="/" class="next-button"></a>
+        @endif
     </div>
 
+    @if (!$has_prize && $prizes > 0)
     <div id="spinner-container">
         <canvas id='canvas' width='500' height='500'>
             Canvas not supported, use another browser.
         </canvas>
         <img id="spinner-arrow" src="{{ asset('images/spin-arrow.png') }}" alt="Spinner arrow" />
 
+        <h2 class="prize-won mt-5"></h2>
+
         <div class="mt-5">
             <a href="{{ route('thankYou') }}" class="next-button {{ ($has_prize) ?' d-block' : '' }}"></a>
         </div>
     </div>
+    @endif
 </div>
 @endsection
 
@@ -74,10 +84,10 @@
         let winningSegment = theWheel.getIndicatedSegment();
 
         // Basic alert of the segment text which is the prize name.
-        alert('You have won ' + winningSegment.text + '!');
+        document.querySelector('.prize-won').innerText = 'You won a ' + winningSegment.text + '!';
 
         setTimeout(function() {
-            location.reload();
+            document.getElementById('spinner-button').setAttribute('disabled', '');
             document.querySelector('#spinner-container .next-button').style.display = 'block';
         }, 3000);
     }
