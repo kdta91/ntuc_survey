@@ -25,6 +25,7 @@ class ReportController extends Controller
         $csvExporter->beforeEach(function ($survey_result) {
             $survey_result->respondent_id = $survey_result['respondent']['first_name'] . ' ' . $survey_result['respondent']['last_name'];
             $survey_result->respondent_email = $survey_result['respondent']['email'];
+            $survey_result->respondent_contact_number = $survey_result['respondent']['contact_number'];
             $survey_result->question_id = strip_tags($survey_result['question']['question']);
             $survey_result->question_choice_id = strip_tags($survey_result['questionChoice']['choice']);
         });
@@ -32,6 +33,7 @@ class ReportController extends Controller
             [
                 'respondent_id' => 'Respondent',
                 'respondent_email' => 'Email',
+                'respondent_contact_number' => 'Contact Number',
                 'question_id' => 'Question',
                 'question_choice_id' => 'Choice',
                 'others'  => 'Others'
