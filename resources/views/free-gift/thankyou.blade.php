@@ -8,7 +8,7 @@
             <h1 class="mb-5">Thank you!</h1>
 
             <div class="mt-5">
-                <a href="{{ route('clearSurveySession') }}" class="next-button"></a>
+                <a href="{{ route('clearSurveySession') }}" class="home-button"></a>
             </div>
         </div>
     </div>

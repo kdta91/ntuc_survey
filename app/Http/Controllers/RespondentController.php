@@ -18,7 +18,7 @@ class RespondentController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:respondents',
-            'contact_number' => 'required|unique:respondents',
+            'contact_number' => 'required|unique:respondents|digits:8',
         ]);
 
         request()->session()->put('respondent', [

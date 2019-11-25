@@ -59,6 +59,7 @@
             </div>
 
             <div class="form-group row col-md-12">
+                <a href="{{ route('clearSurveySession') }}" class="home-button"></a>
                 <button type="submit" class="next-button"></button>
             </div>
 

@@ -9,6 +9,6 @@
         <img src="{{ asset('images/free-gift.png') }}" alt="Complete the survey to get a free gift" class="headline">
     </div>
 
-    <a href="{{ route('respondent.create') }}" class="next-button"></a>
+    <a href="{{ route('respondent.create') }}" class="start-button"></a>
 </div>
 @endsection

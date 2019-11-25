@@ -50,8 +50,32 @@ input[type="checkbox"] + label {
     width: 100%;
 }
 
+.home-button {
+    background: url('../images/home-button.png');
+    background-repeat: no-repeat;
+    background-size: 350px 85px;
+    display: block;
+    width: 350px;
+    height: 85px;
+    margin: 0 auto;
+    border: none;
+    margin-top: 3rem;
+}
+
 .next-button {
     background: url('../images/next-button.png');
+    background-repeat: no-repeat;
+    background-size: 350px 85px;
+    display: block;
+    width: 350px;
+    height: 85px;
+    margin: 0 auto;
+    border: none;
+    margin-top: 3rem;
+}
+
+.start-button {
+    background: url('../images/start-button.png');
     background-repeat: no-repeat;
     background-size: 350px 85px;
     display: block;
@@ -84,11 +108,12 @@ input[class="form-control "],
 .thank-you-container {
     width: 50%;
     margin: 0 auto;
+    margin-top: -50px;
 }
 
 #spinner-arrow {
     position: absolute;
-    top: 300px;
+    top: 250px;
     left: calc(50% - 32.6px);
     z-index: 999;
     width: 65px;
@@ -112,12 +137,12 @@ input[class="form-control "],
 
 @media screen and (max-width: 1200px) {
     #spinner-arrow {
-        top: 300px;
+        top: 250px;
     }
 }
 
 @media screen and (max-width: 992px) {
     #spinner-arrow {
-        top: 350px;
+        top: 300px;
     }
 }
